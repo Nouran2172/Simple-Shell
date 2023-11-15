@@ -48,7 +48,7 @@ int _mysetenv(info_t *information)
 		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenv(info, information->argv[1], information->argv[2]))
+	if (_setenv(information, information->argv[1], information->argv[2]))
 		return (0);
 	return (1);
 }
@@ -59,7 +59,7 @@ int _mysetenv(info_t *information)
  *        constant function prototype.
  *  Return: Always 0
  */
-int _myunsetenv(info_t *information)
+int _myunsetenv(information *information)
 {
 	int j;
 
@@ -69,7 +69,7 @@ int _myunsetenv(info_t *information)
 		return (1);
 	}
 	for (j = 1; j <= information->argc; j++)
-		_unsetenv(info, information->argv[i]);
+		_unsetenv(information, information->argv[j]);
 
 	return (0);
 }
@@ -80,12 +80,12 @@ int _myunsetenv(info_t *information)
  *          constant function prototype.
  * Return: Always 0
  */
-int populate_env_list(info_t *information)
+int populate_env_list(information *information)
 {
 	list_t *node = NULL;
 	size_t j;
 
-	for (j = 0; environ[j]; i++)
+	for (j = 0; environ[j]; j++)
 		add_node_end(&node, environ[j], 0);
 	information->env = node;
 	return (0);
