@@ -11,7 +11,7 @@ char *_strncpy(char *dst, char *sour, int n)
 {
 	int i;
 
-	for (i = 0; i < n && src[i] != '\0'; i++)
+	for (i = 0; i < n && sour[i] != '\0'; i++)
 	{
 		dst[i] = sour[i];
 	}
@@ -31,7 +31,7 @@ char *_strncpy(char *dst, char *sour, int n)
  * @n: the amount of bytes to be maximally used
  * Return: the concatenated string
  */
-char *_strncat(char *dst, char *src, int n)
+char *_strncat(char *dst, char *sour, int n)
 {
 	int i, j;
 
@@ -54,7 +54,7 @@ char *_strncat(char *dst, char *src, int n)
  * @k: the character to look for
  * Return: (s) a pointer to the memory area s
  */
-char *_strchr(const char *str, char k)
+char *_strchr(char *str, char k)
 {
 	do {
 		if (*str == k)

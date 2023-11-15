@@ -6,14 +6,14 @@ int is_chain(info_t *inf, char *bf, size_t *w) {
     if (bf[i] == '|' && bf[i + 1] == '|') {
         bf[i] = '\0';
         i++;
-        inf->cmd_bf_type = CMD_OR;
-    } else if (bf[i] == '&' && buf[i + 1] == '&') {
+        inf->cmd_buf_type = CMD_OR;
+    } else if (bf[i] == '&' && bf[i + 1] == '&') {
         bf[i] = '\0';
         i++;
-        inf->cmd_bf_type = CMD_AND;
+        inf->cmd_buf_type = CMD_AND;
     } else if (bf[i] == ';') {
         bf[i] = '\0';
-        inf->cmd_bf_type = CMD_CHAIN;
+        inf->cmd_buf_type = CMD_CHAIN;
     } else {
         return 0;
     }
@@ -21,23 +21,39 @@ int is_chain(info_t *inf, char *bf, size_t *w) {
     *w = i;
     return 1;
 }
+/**
+ * check_chain - checks we should continue chaining based on last status
+ * @info: the parameter struct
+ * @buf: the char buffer
+ * @p: address of current position in buf
+ * @i: starting position in buf
+ * @len: length of buf
+ *
+ * Return: Void
+ */
+void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+{
+	size_t j = *p;
 
-void check_chain(info_t *inf, char *bf, size_t *w, size_t j, size_t len) {
-    size_t j = *w;
+	if (info->cmd_buf_type == CMD_AND)
+	{
+		if (info->status)
+		{
+			buf[i] = 0;
+			j = len;
+		}
+	}
+	if (info->cmd_buf_type == CMD_OR)
+	{
+		if (!info->status)
+		{
+			buf[i] = 0;
+			j = len;
+		}
+	}
 
-    if (info->cmd_bf_type == CMD_AND && info->status) {
-        bf[j] = '\0';
-        i = len;
-    }
-
-    if (info->cmd_bf_type == CMD_OR && !inf->status) {
-        bf[j] = '\0';
-        i = len;
-    }
-
-    *w = i;
+	*p = j;
 }
-
 int replace_alias(info_t *inf) {
     int j;
     list_t *node;

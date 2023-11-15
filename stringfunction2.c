@@ -8,21 +8,21 @@
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dst, const char *sour)
+char *_strcpy(char *dst, char *sour)
 {
 	int i = 0;
 
 	if (dst == sour || sour == NULL)
 		return (dst);
 
-	while (src[i])
+	while (sour[i])
 	{
-		dest[i] = src[i];
+		dst[i] = sour[i];
 		i++;
 	}
-	dest[i] = '\0';
+	dst[i] = '\0';
 
-	return (dest);
+	return (dst);
 }
 
 /**
@@ -34,7 +34,8 @@ char *_strcpy(char *dst, const char *sour)
 char *_strdup(const char *str)
 {
 	int length = 0;
-	char *ret;
+	int i;
+	char *rt;
 
 	if (str == NULL)
 		return (NULL);
@@ -44,9 +45,8 @@ char *_strdup(const char *str)
 
 	rt = malloc(sizeof(char) * (length + 1));
 	if (!rt)
-	return (NULL);
-
-	for (int i = 0; i <= length; i++)
+		return (NULL);
+	for (i = 0; i <= length; i++)
 	{
 		rt[i] = str[i];
 	}
