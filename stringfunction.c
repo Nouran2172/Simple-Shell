@@ -6,35 +6,38 @@
  *
  * Return: integer length of string
  */
-size_t _strlen(char *x)
+int _strlen(char *x)
 {
-    size_t len = 0;
+	int i = 0;
 
-    if (!x)
-        return 0;
+	if (!x)
+		return (0);
 
-    while (x[len])
-        len++;
-
-    return len;
+	while (*x++)
+		i++;
+	return (i);
 }
 
 /**
- * _strcmp - performs lexicographic comparison of two strings.
- * @x1: the first string
- * @x2: the second string
+ * _strcmp - performs lexicogarphic comparison of two strangs.
+ * @x1: the first strang
+ * @x2: the second strang
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * Return: negative if x1 < x2, positive if x1 > x2, zero if x1 == x2
  */
-int _strcmp(char *x1,char *x2)
+int _strcmp(char *x1, char *x2)
 {
-    while (*x1 && (*x1 == *x2))
-    {
-        x1++;
-        x2++;
-    }
-
-    return *(unsigned char *)x1 - *(unsigned char *)x2;
+	while (*x1 && *x2)
+	{
+		if (*x1 != *x2)
+			return (*x1 - *x2);
+		x1++;
+		x2++;
+	}
+	if (*x1 == *x2)
+		return (0);
+	else
+		return (*x1 < *x2 ? -1 : 1);
 }
 
 /**
@@ -42,15 +45,14 @@ int _strcmp(char *x1,char *x2)
  * @stack: string to search
  * @Needle: the substring to find
  *
- * Return: address of next char of haystack or NULL
+ * Return: address of next char of stack or NULL
  */
-const char *starts_with(const char *stack, const char *Needle)
+char *starts_with(const char *stack, const char *Needle)
 {
-    while (*Needle)
-        if (*Needle++ != *stack++)
-            return NULL;
-
-    return stack;
+	while (*Needle)
+		if (*Needle++ != *stack++)
+			return (NULL);
+	return ((char *)stack);
 }
 
 /**
@@ -60,16 +62,14 @@ const char *starts_with(const char *stack, const char *Needle)
  *
  * Return: pointer to destination buffer
  */
-char *_strcat(char *dst, const char *sour)
+char *_strcat(char *dst, char *sour)
 {
-    char *rt = dst;
+	char *rt = dst;
 
-    while (*dst)
-        dst++;
-
-    while ((*dst++ = *sour++))
-        ;
-
-    return rt;
+	while (*dst)
+		dst++;
+	while (*sour)
+		*dst++ = *sour++;
+	*dst = *sour;
+	return (rt);
 }
-

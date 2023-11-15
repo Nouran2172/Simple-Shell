@@ -7,21 +7,21 @@
  * @n: the amount of characters to be copied
  * Return: the concatenated string
  */
-char *_strncpy(char *dst,char *sour, int n)
+char *_strncpy(char *dst, char *sour, int n)
 {
-    int i;
+	int i;
 
-    for (i = 0; i < n && src[i] != '\0'; i++)
-    {
-        dst[i] = sour[i];
-    }
+	for (i = 0; i < n && src[i] != '\0'; i++)
+	{
+		dst[i] = sour[i];
+	}
 
-    for (; i < n; i++)
-    {
-        dst[i] = '\0';
-    }
+	for (; i < n; i++)
+	{
+		dst[i] = '\0';
+	}
 
-    return dst;
+	return (dst);
 }
 
 /**
@@ -33,19 +33,19 @@ char *_strncpy(char *dst,char *sour, int n)
  */
 char *_strncat(char *dst, char *src, int n)
 {
-    int i, j;
+	int i, j;
 
-    for (i = 0; dst[i] != '\0'; i++)
-        ;
+	for (i = 0; dst[i] != '\0'; i++)
+		;
 
-    for (j = 0; j < n && sour[j] != '\0'; j++, i++)
-    {
-        dst[i] = sour[j];
-    }
+	for (j = 0; j < n && sour[j] != '\0'; j++, i++)
+	{
+		dst[i] = sour[j];
+	}
 
-    dst[i] = '\0';
+	dst[i] = '\0';
 
-    return dst;
+	return (dst);
 }
 
 /**
@@ -56,12 +56,11 @@ char *_strncat(char *dst, char *src, int n)
  */
 char *_strchr(const char *str, char k)
 {
-    do
-    {
-        if (*str == k)
-            return (char *)str;
-    } while (*str++ != '\0');
+	do {
+		if (*str == k)
+			return (str);
+	} while (*str++ != '\0');
 
-    return NULL;
+	return (NULL);
 }
 
