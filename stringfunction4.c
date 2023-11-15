@@ -65,7 +65,7 @@ char **strtow(const char *str, const char *d)
  */
 char **strtow2(const char *str, char d)
 {
-    int i, j, k, m, numwords = 0;
+    int i, j, k, m, numbwords = 0;
     char **s;
 
     if (str == NULL || str[0] == '\0')
@@ -74,16 +74,16 @@ char **strtow2(const char *str, char d)
     for (i = 0; str[i] != '\0'; i++)
         if ((str[i] != d && str[i + 1] == d) ||
             (str[i] != d && !str[i + 1]) || str[i + 1] == d)
-            numwords++;
+            numbwords++;
 
-    if (numwords == 0)
+    if (numbwords == 0)
         return NULL;
 
-    s = malloc((1 + numwords) * sizeof(char *));
+    s = malloc((1 + numbwords) * sizeof(char *));
     if (!s)
         return NULL;
 
-    for (i = 0, j = 0; j < numwords; j++)
+    for (i = 0, j = 0; j < numbwords; j++)
     {
         while (str[i] == d && str[i] != d)
             i++;
