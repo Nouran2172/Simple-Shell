@@ -29,7 +29,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			if ((*buf)[b - 1] == '\n')
 			{
 				(*buf)[b - 1] = '\0'; /* remove trailing newline */
-				r--;
+				b--;
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
@@ -104,7 +104,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *h)
 	if (*h)
 		return (0);
 	b = read(info->readfd, buf, READ_BUF_SIZE);
-	if (r >= 0)
+	if (b >= 0)
 		*h = b;
 	return (b);
 }

@@ -8,7 +8,7 @@
 	* Return: a pointer to an array of strings, or NULL on failure
 */
 
-char **strtow(const char *str, const char *d)
+char **strtow(char *str, char *d)
 {
 	int i, j, l, m, numbwords = 0;
 	char **s;
@@ -28,18 +28,18 @@ char **strtow(const char *str, const char *d)
 	s = malloc((1 + numbwords) * sizeof(char *));
 	if (!s)
 		return (NULL);
-		for (i = 0, j = 0; j < numbwords; j++)
+	for (i = 0, j = 0; j < numbwords; j++)
 	{
 		while (is_delim(str[i], d))
 			i++;
 		l = 0;
 		while (!is_delim(str[i + l], d) && str[i + l])
-			k++;
+			j++;
 		s[j] = malloc((l + 1) * sizeof(char));
 		if (!s[j])
 		{
 			for (l = 0; l < j; l++)
-			free(s[k]);
+			free(s[j]);
 			free(s);
 			return (NULL);
 		}
@@ -57,7 +57,7 @@ char **strtow(const char *str, const char *d)
 	* @d: the delimiter
 	* Return: a pointer to an array of strings, or NULL on failure
 */
-char **strtow2(const char *str, char d)
+char **strtow2(char *str, char d)
 {
 	int i, j, k, m, numbwords = 0;
 	char **s;

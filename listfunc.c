@@ -3,14 +3,14 @@
 /**
  * add_node - adds a node to the start of the list
  * @head1: address of pointer to head node
- * @str1: str field of node
- * @num1: node index used by history
+ * @str: str field of node
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *add_node(list_t **head1, const char *str1, int num1)
+list_t *add_node(list_t **head1, const char *str, int num)
 {
-	list_t *new_head;
+	list_t *NEW_head;
 
 	if (!head1)
 		return (NULL);
@@ -18,11 +18,11 @@ list_t *add_node(list_t **head1, const char *str1, int num1)
 	if (!NEW_head)
 		return (NULL);
 	_memset((void *)NEW_head, 0, sizeof(list_t));
-	new_head->num1 = num1;
-	if (str1)
+	NEW_head->num = num;
+	if (str)
 	{
-		NEW_head->str1 = _strdup(str1);
-		if (!NEW_head->str1)
+		NEW_head->str = _strdup(str);
+		if (!NEW_head->str)
 		{
 			free(NEW_head);
 			return (NULL);
@@ -36,12 +36,12 @@ list_t *add_node(list_t **head1, const char *str1, int num1)
 /**
  * add_node_end - adds a node to the end of the list
  * @head1: address of pointer to head node
- * @str1: str field of node
- * @num1: node index used by history
+ * @str: str field of node
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *add_node_end(list_t **head1, const char *str1, int num1)
+list_t *add_node_end(list_t **head1, const char *str, int num)
 {
 	list_t *NEW_node, *node1;
 
@@ -53,11 +53,11 @@ list_t *add_node_end(list_t **head1, const char *str1, int num1)
 	if (!NEW_node)
 		return (NULL);
 	_memset((void *)NEW_node, 0, sizeof(list_t));
-	NEW_node->num1 = num1;
-	if (str1)
+	NEW_node->num = num;
+	if (str)
 	{
-		NEW_node->str1 = _strdup(str1);
-		if (!NEW_node->str1)
+		NEW_node->str = _strdup(str);
+		if (!NEW_node->str)
 		{
 			free(NEW_node);
 			return (NULL);
@@ -101,7 +101,7 @@ size_t print_list_str(const list_t *head)
  *
  * Return: 1 on success, 0 on failure
  */
-int delete_node_at_index(list_t **h, unsigned int in)
+int delete_node_at_index(list_t **h, unsigned int in1)
 {
 	list_t *node1, *prev_node;
 	unsigned int i = 0;

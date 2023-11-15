@@ -64,7 +64,7 @@ int read_history(info_t *inf)
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
-	char *buf = NULL, *name = get_history_file(inf);
+	char *bf = NULL, *name = get_history_file(inf);
 
 	if (!name)
 		return (0);

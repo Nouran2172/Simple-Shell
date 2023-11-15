@@ -13,7 +13,7 @@ char *_memset(char *p1, char p2, unsigned int n)
 
 	for (i = 0; i < n; i++)
 		p1[i] = p2;
-	return (p2);
+	return (p1);
 }
 
 /**
@@ -39,7 +39,7 @@ void ffree(char **str2)
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *ptr1, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr1, unsigned int OLD_size, unsigned int NEW_size)
 {
 	char *po;
 
@@ -56,7 +56,7 @@ void *_realloc(void *ptr1, unsigned int old_size, unsigned int new_size)
 
 	OLD_size = OLD_size < NEW_size ? OLD_size : NEW_size;
 	while (OLD_size--)
-		pO[OLD_size] = ((char *)ptr1)[OLD_size];
+		po[OLD_size] = ((char *)ptr1)[OLD_size];
 	free(ptr1);
-	return (pO);
+	return (po);
 }

@@ -14,24 +14,24 @@ int hsh(info_t *inf, char **vector)
 
 	while (i != -1 && builtin_rt != -2)
 	{
-		clear_inf(inf);
+		clear_info(inf);
 		if (interactive(inf))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		r = get_input(inf);
+		i = get_input(inf);
 		if (i != -1)
 		{
-			set_inf(inf, vector);
+			set_info(inf, vector);
 			builtin_rt = find_builtin(inf);
 			if (builtin_rt == -1)
 				find_cmd(inf);
 		}
 		else if (interactive(inf))
 			_putchar('\n');
-		free_inf(inf, 0);
+		free_info(inf, 0);
 	}
 	write_history(inf);
-	free_inf(inf, 1);
+	free_info(inf, 1);
 	if (!interactive(inf) && inf->status)
 		exit(inf->status);
 	if (builtin_rt == -2)
@@ -71,7 +71,7 @@ int find_builtin(info_t *inf)
 		if (_strcmp(inf->argv[0], builtintbl[j].type) == 0)
 		{
 			inf->line_count++;
-			built_in_rt = builtintbl[i].func(inf);
+			built_in_rt = builtintbl[j].func(inf);
 			break;
 		}
 	return (built_in_rt);
